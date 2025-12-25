@@ -8,6 +8,8 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+type Msg = nats.Msg
+
 func Request[T any, R any](ctx context.Context, nc *nats.Conn, subj string, req T, res R) error {
 	data, err := proto.Marshal(any(req).(proto.Message))
 	if err != nil {
