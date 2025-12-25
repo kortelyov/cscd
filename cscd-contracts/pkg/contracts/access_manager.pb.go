@@ -21,29 +21,28 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GrantAccessRequest struct {
+type ElasticAccessGrantRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Resource      string                 `protobuf:"bytes,2,opt,name=resource,proto3" json:"resource,omitempty"` // "elk", "gitlab"
-	Role          string                 `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GrantAccessRequest) Reset() {
-	*x = GrantAccessRequest{}
+func (x *ElasticAccessGrantRequest) Reset() {
+	*x = ElasticAccessGrantRequest{}
 	mi := &file_access_manager_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GrantAccessRequest) String() string {
+func (x *ElasticAccessGrantRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GrantAccessRequest) ProtoMessage() {}
+func (*ElasticAccessGrantRequest) ProtoMessage() {}
 
-func (x *GrantAccessRequest) ProtoReflect() protoreflect.Message {
+func (x *ElasticAccessGrantRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_access_manager_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,28 +54,117 @@ func (x *GrantAccessRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GrantAccessRequest.ProtoReflect.Descriptor instead.
-func (*GrantAccessRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ElasticAccessGrantRequest.ProtoReflect.Descriptor instead.
+func (*ElasticAccessGrantRequest) Descriptor() ([]byte, []int) {
 	return file_access_manager_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GrantAccessRequest) GetUsername() string {
+func (x *ElasticAccessGrantRequest) GetUsername() string {
 	if x != nil {
 		return x.Username
 	}
 	return ""
 }
 
-func (x *GrantAccessRequest) GetResource() string {
+func (x *ElasticAccessGrantRequest) GetRole() string {
 	if x != nil {
-		return x.Resource
+		return x.Role
 	}
 	return ""
 }
 
-func (x *GrantAccessRequest) GetRole() string {
+type ElasticAccessRevokeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ElasticAccessRevokeRequest) Reset() {
+	*x = ElasticAccessRevokeRequest{}
+	mi := &file_access_manager_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ElasticAccessRevokeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ElasticAccessRevokeRequest) ProtoMessage() {}
+
+func (x *ElasticAccessRevokeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_access_manager_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ElasticAccessRevokeRequest.ProtoReflect.Descriptor instead.
+func (*ElasticAccessRevokeRequest) Descriptor() ([]byte, []int) {
+	return file_access_manager_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ElasticAccessRevokeRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *ElasticAccessRevokeRequest) GetRole() string {
 	if x != nil {
 		return x.Role
+	}
+	return ""
+}
+
+type ElasticPasswordChangeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ElasticPasswordChangeRequest) Reset() {
+	*x = ElasticPasswordChangeRequest{}
+	mi := &file_access_manager_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ElasticPasswordChangeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ElasticPasswordChangeRequest) ProtoMessage() {}
+
+func (x *ElasticPasswordChangeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_access_manager_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ElasticPasswordChangeRequest.ProtoReflect.Descriptor instead.
+func (*ElasticPasswordChangeRequest) Descriptor() ([]byte, []int) {
+	return file_access_manager_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ElasticPasswordChangeRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
 	}
 	return ""
 }
@@ -85,11 +173,15 @@ var File_access_manager_proto protoreflect.FileDescriptor
 
 const file_access_manager_proto_rawDesc = "" +
 	"\n" +
-	"\x14access_manager.proto\x12\x04cscd\"`\n" +
-	"\x12GrantAccessRequest\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
-	"\bresource\x18\x02 \x01(\tR\bresource\x12\x12\n" +
-	"\x04role\x18\x03 \x01(\tR\x04roleB8Z6github.com/kortelyov/cscd/cscd-contracts/pkg/contractsb\x06proto3"
+	"\x14access_manager.proto\x12\x04cscd\"K\n" +
+	"\x19ElasticAccessGrantRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x12\n" +
+	"\x04role\x18\x02 \x01(\tR\x04role\"L\n" +
+	"\x1aElasticAccessRevokeRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x12\n" +
+	"\x04role\x18\x02 \x01(\tR\x04role\":\n" +
+	"\x1cElasticPasswordChangeRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busernameB8Z6github.com/kortelyov/cscd/cscd-contracts/pkg/contractsb\x06proto3"
 
 var (
 	file_access_manager_proto_rawDescOnce sync.Once
@@ -103,9 +195,11 @@ func file_access_manager_proto_rawDescGZIP() []byte {
 	return file_access_manager_proto_rawDescData
 }
 
-var file_access_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_access_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_access_manager_proto_goTypes = []any{
-	(*GrantAccessRequest)(nil), // 0: cscd.GrantAccessRequest
+	(*ElasticAccessGrantRequest)(nil),    // 0: cscd.ElasticAccessGrantRequest
+	(*ElasticAccessRevokeRequest)(nil),   // 1: cscd.ElasticAccessRevokeRequest
+	(*ElasticPasswordChangeRequest)(nil), // 2: cscd.ElasticPasswordChangeRequest
 }
 var file_access_manager_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -126,7 +220,7 @@ func file_access_manager_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_access_manager_proto_rawDesc), len(file_access_manager_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
