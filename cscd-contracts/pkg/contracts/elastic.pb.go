@@ -89,6 +89,94 @@ func (x *User) GetRoles() []string {
 	return nil
 }
 
+type UserFetchRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserFetchRequest) Reset() {
+	*x = UserFetchRequest{}
+	mi := &file_elastic_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserFetchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserFetchRequest) ProtoMessage() {}
+
+func (x *UserFetchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_elastic_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserFetchRequest.ProtoReflect.Descriptor instead.
+func (*UserFetchRequest) Descriptor() ([]byte, []int) {
+	return file_elastic_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UserFetchRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+type UserUpdateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserUpdateRequest) Reset() {
+	*x = UserUpdateRequest{}
+	mi := &file_elastic_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserUpdateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserUpdateRequest) ProtoMessage() {}
+
+func (x *UserUpdateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_elastic_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserUpdateRequest.ProtoReflect.Descriptor instead.
+func (*UserUpdateRequest) Descriptor() ([]byte, []int) {
+	return file_elastic_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UserUpdateRequest) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
 var File_elastic_proto protoreflect.FileDescriptor
 
 const file_elastic_proto_rawDesc = "" +
@@ -98,7 +186,12 @@ const file_elastic_proto_rawDesc = "" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x14\n" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12\x14\n" +
-	"\x05roles\x18\x04 \x03(\tR\x05rolesB8Z6github.com/kortelyov/cscd/cscd-contracts/pkg/contractsb\x06proto3"
+	"\x05roles\x18\x04 \x03(\tR\x05roles\".\n" +
+	"\x10UserFetchRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"3\n" +
+	"\x11UserUpdateRequest\x12\x1e\n" +
+	"\x04user\x18\x01 \x01(\v2\n" +
+	".cscd.UserR\x04userB8Z6github.com/kortelyov/cscd/cscd-contracts/pkg/contractsb\x06proto3"
 
 var (
 	file_elastic_proto_rawDescOnce sync.Once
@@ -112,16 +205,19 @@ func file_elastic_proto_rawDescGZIP() []byte {
 	return file_elastic_proto_rawDescData
 }
 
-var file_elastic_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_elastic_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_elastic_proto_goTypes = []any{
-	(*User)(nil), // 0: cscd.User
+	(*User)(nil),              // 0: cscd.User
+	(*UserFetchRequest)(nil),  // 1: cscd.UserFetchRequest
+	(*UserUpdateRequest)(nil), // 2: cscd.UserUpdateRequest
 }
 var file_elastic_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: cscd.UserUpdateRequest.user:type_name -> cscd.User
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_elastic_proto_init() }
@@ -136,7 +232,7 @@ func file_elastic_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_elastic_proto_rawDesc), len(file_elastic_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
