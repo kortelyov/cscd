@@ -19,7 +19,7 @@ func NewUserFetchHandler(provider *provider.ElasticProvider) *UserFetchHandler {
 }
 
 func (h *UserFetchHandler) HandleUserFetch(msg *nats.Msg) {
-	err := h.provider.FetchUser(context.Background(), msg.Subject)
+	_, err := h.provider.FetchUser(context.Background(), msg.Subject)
 	if err != nil {
 
 	}

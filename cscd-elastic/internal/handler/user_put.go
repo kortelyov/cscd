@@ -2,7 +2,9 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/kortelyov/cscd/cscd-contracts/pkg/contracts"
 	"github.com/nats-io/nats.go"
 
 	"github.com/kortelyov/cscd/cscd-elastic/internal/provider"
@@ -19,7 +21,9 @@ func NewUserPutHandler(provider *provider.ElasticProvider) *UserPutHandler {
 }
 
 func (h *UserPutHandler) HandleUserPut(msg *nats.Msg) {
-	err := h.provider.PutUser(context.Background(), msg.Subject)
+	var user contracts.User
+	_ = json.Unmarshal(msg.Data, &user)
+	_ = h.provider.PutUser(context.Background(), &user)
 
 	return
 }
