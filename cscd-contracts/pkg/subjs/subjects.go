@@ -1,6 +1,10 @@
 package subjs
 
 const (
+	SubjectElasticAccessGrant    = "elastic.access.grant"
+	SubjectElasticAccessRevoke   = "elastic.access.revoke"
+	SubjectElasticPasswordChange = "elastic.password.change"
+
 	// SubjectElasticUserFetch topic for fetching user
 	SubjectElasticUserFetch = "elastic.v1.user.fetch"
 	// SubjectElasticUserPut topic for create / update user
