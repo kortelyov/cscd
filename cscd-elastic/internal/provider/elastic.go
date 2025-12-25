@@ -56,7 +56,7 @@ func (p *ElasticProvider) PutUser(ctx context.Context, user *contracts.User) err
 
 	req := esapi.XPackSecurityPutUserRequest{
 		Body:     bytes.NewReader(b),
-		Username: "user.Username",
+		Username: user.Email,
 	}
 
 	_, err := req.Do(ctx, p.client)
