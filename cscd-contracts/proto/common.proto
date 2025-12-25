@@ -3,9 +3,3 @@ syntax = "proto3";
 package cscd;
 
 option go_package = "github.com/kortelyov/cscd/cscd-contracts/pkg/contracts";
-
-message User {
-  string id = 1;
-  string email = 2;
-  repeated string roles = 3;
-}

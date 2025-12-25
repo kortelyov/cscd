@@ -6,9 +6,9 @@ option go_package = "github.com/kortelyov/cscd/cscd-contracts/pkg/contracts";
 
 import "common.proto";
 
-message GetUserRequest { int64 id = 1; }
-message CreateUserRequest { User user = 1; }
-message UpdatePasswordRequest {
-  string id = 1;
-  string new_password = 2;
+message User {
+  string username = 1;
+  string full_name = 2;
+  string email = 3;
+  repeated string roles = 4;
 }

@@ -8,10 +8,12 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/elastic/go-elasticsearch/v6"
 	"github.com/nats-io/nats.go"
 
 	"github.com/kortelyov/cscd/cscd-contracts/pkg/subjs"
 	"github.com/kortelyov/cscd/cscd-elastic/internal/handler"
+	"github.com/kortelyov/cscd/cscd-elastic/internal/provider"
 )
 
 func main() {
@@ -35,11 +37,18 @@ func main() {
 	}
 	defer nc.Close()
 
-	fetch, err := nc.QueueSubscribe(subjs.SubjectElasticUserFetch, subjs.QueueElastic, handler.HandleUserFetch)
+	client, err := elasticsearch.NewClient(elasticsearch.Config{})
+
+	elastic := provider.NewElasticProvider(client)
+
+	fHandler := handler.NewUserFetchHandler(elastic)
+	pHandler := handler.NewUserPutHandler(elastic)
+
+	fetch, err := nc.QueueSubscribe(subjs.SubjectElasticUserFetch, subjs.QueueElastic, fHandler.HandleUserFetch)
 	if err != nil {
 		logger.Fatalf("subscription error: %v", err)
 	}
-	put, err := nc.QueueSubscribe(subjs.SubjectElasticUserPut, subjs.QueueElastic, handler.HandleUserPut)
+	put, err := nc.QueueSubscribe(subjs.SubjectElasticUserPut, subjs.QueueElastic, pHandler.HandleUserPut)
 	if err != nil {
 		logger.Fatalf("subscription error: %v", err)
 	}
